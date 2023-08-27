@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mushroom-api
+spec:
+  selector:
+    matchLabels:
+      app: mushroom-api
+  template:
+    metadata:
+      labels:
+        app: mushroom-api
+    spec:
+      containers:
+      - image: okteto.dev/python-mushroom-api:1.0.0
+        name: mushroom-api
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mushroom-api
+spec:
+  type: ClusterIP
+  ports:
+  - name: "mushroom-api"
+    port: 8080
+  selector:
+    app: mushroom-api
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mushroom-api
+  annotations:
+    dev.okteto.com/generate-host: mushroom-api
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: mushroom-api
+                port:
+                  number: 8080
+            path: /
+            pathType: ImplementationSpecific

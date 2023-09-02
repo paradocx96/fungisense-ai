@@ -25,7 +25,7 @@ spec:
   type: ClusterIP
   ports:
   - name: "mushroom-api"
-    port: 8080
+    port: 5000
   selector:
     app: mushroom-api
 
@@ -45,6 +45,6 @@ spec:
               service:
                 name: mushroom-api
                 port:
-                  number: 8080
+                  number: 5000
             path: /
             pathType: ImplementationSpecific

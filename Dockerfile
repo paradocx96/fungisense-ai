@@ -12,6 +12,6 @@ COPY model.h5 model.h5
 COPY mushrooms.csv mushrooms.csv
 COPY app.py app.py
 
-EXPOSE 8080
+EXPOSE 5000
 
 CMD ["python", "app.py" ]

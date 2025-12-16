@@ -316,3 +316,59 @@ class ErrorResponse(BaseModel):
     error: bool = Field(default=True, description="Error flag")
     message: str = Field(..., description="Error message")
     detail: Optional[str] = Field(None, description="Detailed error information")
+
+
+# Phase 1 Enhanced Endpoint Schemas
+
+class EnhancedHealthCheckResponse(BaseModel):
+    """Enhanced health check response with detailed system status"""
+    status: str = Field(..., description="API status (healthy/unhealthy)")
+    version: str = Field(..., description="API version")
+    model_loaded: bool = Field(..., description="Is ML model loaded")
+    model_type: Optional[str] = Field(None, description="Type of model (multi-output/single-output)")
+    encoders_loaded: dict = Field(..., description="Status of each encoder")
+    uptime_seconds: float = Field(..., description="API uptime in seconds")
+    total_predictions: int = Field(default=0, description="Total predictions made since startup")
+
+
+class ModelMetadata(BaseModel):
+    """Model metadata and performance information"""
+    model_version: str = Field(..., description="Model version")
+    model_type: str = Field(..., description="Model architecture type")
+    training_date: Optional[str] = Field(None, description="Model training date")
+    num_species: int = Field(..., description="Number of species in model")
+    num_families: int = Field(..., description="Number of families in model")
+    num_habitats: int = Field(..., description="Number of habitats in model")
+    num_seasons: int = Field(..., description="Number of seasons in model")
+    input_features: int = Field(..., description="Number of input features")
+    model_size_mb: Optional[float] = Field(None, description="Model file size in MB")
+    performance_metrics: Optional[dict] = Field(None, description="Model performance metrics")
+
+
+class SpeciesProbability(BaseModel):
+    """Species prediction with probability"""
+    species: str = Field(..., description="Species name")
+    family: str = Field(..., description="Family name")
+    edibility: str = Field(..., description="Edibility classification")
+    probability: float = Field(..., ge=0, le=1, description="Prediction probability")
+    confidence: float = Field(..., ge=0, le=1, description="Overall confidence")
+
+
+class TopNSpeciesResponse(BaseModel):
+    """Top-N species predictions response"""
+    top_predictions: List[SpeciesProbability] = Field(..., description="Top N species predictions")
+    input_features: dict = Field(..., description="Input features summary")
+    metadata: PredictionMetadata
+
+
+class BatchPredictionRequest(BaseModel):
+    """Batch prediction request"""
+    mushrooms: List[MushroomInput] = Field(..., min_length=1, max_length=100, description="List of mushrooms to predict (max 100)")
+    include_risk_assessment: bool = Field(default=True, description="Include risk assessment in response")
+
+
+class BatchPredictionResponse(BaseModel):
+    """Batch prediction response"""
+    predictions: List[CompletePredictionResponse] = Field(..., description="List of predictions")
+    summary: dict = Field(..., description="Summary statistics")
+    metadata: PredictionMetadata

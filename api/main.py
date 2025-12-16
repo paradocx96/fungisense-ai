@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config.config import settings
 from api.models.schemas import (HealthCheckResponse)
-from api.routes import prediction
+from api.routes import prediction, health, model, system
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -32,7 +32,10 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(prediction.router, prefix="/api/v1", tags=["Predictions"])
+app.include_router(system.router)
+app.include_router(health.router)
+app.include_router(model.router)
+app.include_router(prediction.router)
 
 
 # Root endpoint
@@ -43,19 +46,6 @@ async def root():
     """
     return {
         "status": "running",
-        "version": settings.API_VERSION,
-        "model_loaded": prediction.model is not None
-    }
-
-
-# Health check endpoint
-@app.get("/health", response_model=HealthCheckResponse)
-async def health_check():
-    """
-    Health check endpoint
-    """
-    return {
-        "status": "healthy",
         "version": settings.API_VERSION,
         "model_loaded": prediction.model is not None
     }

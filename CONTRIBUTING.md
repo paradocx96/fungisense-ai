@@ -53,7 +53,7 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 2. **Add upstream remote**
    ```bash
-   git remote add upstream https://github.com/ORIGINAL_OWNER/fungisense-ai.git
+   git remote add upstream https://github.com/paradocx96/fungisense-ai.git
    ```
 
 3. **Create virtual environment**
@@ -312,13 +312,12 @@ open htmlcov/index.html
 - FastAPI generates automatic docs from code
 - Add clear descriptions to Pydantic models
 - Use docstrings in route functions
-- Update PHASE1_ENDPOINTS.md for major changes
 
 ### Code Documentation
 
 - Add docstrings to all public functions and classes
 - Comment complex algorithms or business logic
-- Keep comments up-to-date with code changes
+- Keep comments up to date with code changes
 - Avoid obvious comments
 
 ### README Updates
@@ -338,7 +337,7 @@ When adding features, update:
 - [ ] New tests added for new functionality
 - [ ] Documentation updated (README, docstrings, etc.)
 - [ ] Commit messages follow Conventional Commits
-- [ ] Branch is up-to-date with main
+- [ ] Branch is up to date with main
 
 ### PR Description Template
 

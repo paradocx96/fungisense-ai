@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # Main API service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fungisense-api
+    ports:
+      - "8000:8000"
+    environment:
+      - API_TITLE=FungiSense AI - Multi-Feature Prediction API
+      - API_VERSION=2.0.0
+      - HOST=0.0.0.0
+      - PORT=8000
+      - RELOAD=false  # true for development
+    volumes:
+      - ./models_saved:/app/models_saved
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - fungisense-network
+
+  # Optional: Nginx reverse proxy (for production)
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: fungisense-nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./ssl:/etc/nginx/ssl:ro
+  #   depends_on:
+  #     - api
+  #   networks:
+  #     - fungisense-network
+  #   restart: unless-stopped
+
+  # Optional: Prometheus for monitoring (advanced)
+  # prometheus:
+  #   image: prom/prometheus:latest
+  #   container_name: fungisense-prometheus
+  #   ports:
+  #     - "9090:9090"
+  #   volumes:
+  #     - ./prometheus.yml:/etc/prometheus/prometheus.yml
+  #     - prometheus-data:/prometheus
+  #   networks:
+  #     - fungisense-network
+  #   restart: unless-stopped
+
+  # Optional: Grafana for visualization (advanced)
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   container_name: fungisense-grafana
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #   volumes:
+  #     - grafana-data:/var/lib/grafana
+  #   networks:
+  #     - fungisense-network
+  #   depends_on:
+  #     - prometheus
+  #   restart: unless-stopped
+
+networks:
+  fungisense-network:
+    driver: bridge
+
+volumes:
+  prometheus-data:
+  grafana-data:
+

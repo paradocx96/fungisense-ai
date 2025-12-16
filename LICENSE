@@ -1,0 +1,60 @@
+MIT License
+
+Copyright (c) 2025 Navinda Chandrasiri
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+IMPORTANT DISCLAIMER FOR MUSHROOM CLASSIFICATION SOFTWARE
+=========================================================
+
+This software is designed for EDUCATIONAL and RESEARCH purposes only.
+
+WARNING: The authors and contributors of this software assume NO LIABILITY
+whatsoever for any harm, injury, illness, or death that may result from
+using the predictions or classifications made by this software.
+
+CRITICAL SAFETY INFORMATION:
+
+1. NEVER consume wild mushrooms based solely on predictions from this or
+   any AI/ML software.
+
+2. Many edible mushrooms have deadly poisonous lookalikes that can be
+   nearly impossible to distinguish without expert knowledge.
+
+3. Mushroom poisoning can cause severe illness, organ failure, and death.
+
+4. Always consult with expert mycologists and use multiple reliable
+   identification methods before consuming any wild mushroom.
+
+5. When in doubt, throw it out. No meal is worth risking your life.
+
+BY USING THIS SOFTWARE, YOU ACKNOWLEDGE AND AGREE THAT:
+
+- You understand the extreme risks of consuming misidentified wild mushrooms
+- You will not rely on this software for definitive mushroom identification
+- You accept full responsibility for any decision to consume wild mushrooms
+- The authors and contributors are not liable for any consequences of using
+  this software
+
+This software is intended as a learning tool for understanding machine
+learning, mycology, and classification systems - NOT as a field guide for
+foraging edible mushrooms.
+
